@@ -1,0 +1,47 @@
+.header {
+}
+
+.calc-perimeter {
+  display: grid;
+
+  grid-template-rows: 100px 300px;
+}
+
+.calc-display {
+  background-color: aquamarine;
+}
+
+.calc-inner-display {
+  background-color: blueviolet;
+}
+
+.calc-buttons {
+  background: coral;
+  display: grid;
+  grid-template-rows: 150px 150px;
+}
+
+.calc-numbers {
+  background: firebrick;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+.calc-numbers button {
+  flex-grow: 1;
+  height: 2fr;
+  width: 1fr;
+}
+.calc-operators {
+  background: darkgreen;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+.calc-executables {
+  background: darkslateblue;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
