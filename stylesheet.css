@@ -13,6 +13,12 @@
 
 .calc-inner-display {
   background-color: blueviolet;
+  color: aliceblue;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: x-large;
+  letter-spacing: 1px;
 }
 
 .calc-buttons {
