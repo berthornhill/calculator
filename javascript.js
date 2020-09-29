@@ -19,7 +19,7 @@ function multiplication(numOne, numTwo) {
 
 // Division
 function division(numOne, numTwo) {
-  return +numOne / +numTwo;
+  return numTwo == 0 ? "Nice try ;D" : +numOne / +numTwo;
 }
 
 // "operate()" to take in 2 numbers and call the appropriate mathmatical operator function.
@@ -56,15 +56,21 @@ displayField.innerText = "";
 // Listener for button press and displaying of number input.
 // if displaying operator, stores operator in variable.
 //-- sets variable hasNumberInput. this variable will be switched between true/flase for storing operator variables and clearing display without clearing required variables.
+
 let hasNumberInput = false;
 
 numbersButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    if (hasNumberInput == true) {
+    if (btn.dataset.value == "negative") {
+      posNegToggle();
+    } else if (btn.dataset.value == ".") {
+      decimalToggle(btn.dataset.value);
+    } else if (hasNumberInput == true) {
+      //skips,
       displayField.innerText = btn.dataset.value;
       hasNumberInput = false;
     } else {
-      displayField.innerText += btn.dataset.value;
+      displayField.innerText += btn.dataset.value; // 1,
     }
   });
 });
@@ -75,22 +81,15 @@ numbersButtons.forEach((btn) => {
 
 operatorButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    if (numOne == "") {
-      numOne = displayField.innerText; // 1
-      displayField.innerText = btn.dataset.value; // +
-      operator = btn.dataset.value;
-    } else if (numTwo == "") {
-      numTwo = displayField.innerText;
-      displayField.innerText = btn.dataset.value;
+    if (operator == "") {
+      numOne = displayField.innerText;
       operator = btn.dataset.value;
     } else {
       numTwo = displayField.innerText;
-      displayField.innerText = btn.dataset.value;
-      operator = btn.dataset.value;
-      // numOne = operate(numOne, numTwo, operator);
       equals();
+      operator = btn.dataset.value;
     }
-    hasNumberInput = true; // true
+    hasNumberInput = true;
   });
 });
 
@@ -113,6 +112,8 @@ function clearButton() {
   displayField.innerText = "";
   numOne = "";
   numTwo = "";
+  operator = "";
+  decimal = false;
 }
 
 // "BACKSPACE" button function. Removes last num/char in "displayField.innerText"
@@ -126,28 +127,34 @@ function backspace() {
 // EQUALS/EXECUTE button function
 
 function equals() {
-  if (numOne != "" || numTwo != "") {
+  // if (numOne != "" || numTwo != "") {
+  if (operator == "") {
+    return;
+  } else {
     numTwo = displayField.innerText;
     numOne = operate(numOne, numTwo, operator);
     displayField.innerText = numOne;
     numTwo = "";
+    operator = "";
+  }
+}
+// toggle for positive and negative number input.
+let negative = false;
+function posNegToggle() {
+  if (negative == false) {
+    displayField.innerText = "-" + displayField.innerText;
+    negative = true;
+  } else {
+    displayField.innerText = displayField.innerText.substring(1);
+    negative = false;
   }
 }
 
-// Button Objects Key/Values
-// const buttonPress = {
-//   1: 1,
-//   2: 2,
-//   3: 3,
-//   4: 4,
-//   5: 5,
-//   6: 6,
-//   7: 7,
-//   8: 8,
-//   9: 9,
-//   0: 0,
-//   "+": "+",
-//   "-": "-",
-//   "*": "*",
-//   "/": "/",
-// };
+// toggles decimal to be placed once but not multiple times.
+let decimal = false;
+function decimalToggle(deci) {
+  if (decimal == false) {
+    displayField.innerText += deci;
+    decimal = true;
+  }
+}
