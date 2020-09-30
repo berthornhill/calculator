@@ -136,6 +136,7 @@ function equals() {
     displayField.innerText = numOne;
     numTwo = "";
     operator = "";
+    quack();
   }
 }
 // toggle for positive and negative number input.
@@ -157,4 +158,9 @@ function decimalToggle(deci) {
     displayField.innerText += deci;
     decimal = true;
   }
+}
+
+function quack() {
+  const audio = document.querySelector("audio");
+  audio.play();
 }
