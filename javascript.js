@@ -31,13 +31,13 @@ let operator = "";
 function operate(numOne, numTwo, operator) {
   return operator == "+"
     ? addition(numOne, numTwo)
-    : operator == "-"
+    : operator == "⁻"
     ? subtraction(numOne, numTwo)
     : operator == "*"
     ? multiplication(numOne, numTwo)
     : operator == "/"
     ? division(numOne, numTwo)
-    : "Opps! Something went wrong.";
+    : "Opps! :(";
 }
 
 // Access to DOM Elements
